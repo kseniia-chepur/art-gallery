@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
   padding: 20px;
   background-color: vars.$primary-c;
   color: vars.$white-c;
@@ -39,5 +40,14 @@
         color: vars.$hover-c;
       }
     }
+  }
+}
+
+@media(max-width: 600px) {
+  .footer__content {
+    max-width: 300px;
+  }
+  .footer__social-media {
+    gap: 5px;
   }
 }
