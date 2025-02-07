@@ -34,7 +34,7 @@
     }
 
     &-icon {
-      transition: color 0.3s ease;
+      transition: vars.$transition;
 
       &:hover {
         color: vars.$hover-c;
