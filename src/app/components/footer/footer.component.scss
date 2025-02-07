@@ -1,0 +1,43 @@
+@use "./../../../styles/variables.scss" as vars;
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: vars.$primary-c;
+  color: vars.$white-c;
+
+  &__content {
+    &-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    &-description {
+      font-size: 0.875rem;
+    }
+  }
+
+  &__social-media {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    &-link {
+      font-size: 1rem;
+      color: vars.$white-c;
+      display: block;
+      padding: 5px;
+    }
+
+    &-icon {
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: vars.$hover-c;
+      }
+    }
+  }
+}

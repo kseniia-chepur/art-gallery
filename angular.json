@@ -32,7 +32,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/variables.scss",
+              "src/styles/styles.scss",
+               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": []
           },
@@ -91,7 +93,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/variables.scss",
+              "src/styles/styles.scss",
+               "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": []
           }

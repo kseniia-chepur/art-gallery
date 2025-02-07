@@ -1,0 +1,29 @@
+@use "./../../../styles/variables.scss" as vars;
+
+.header {
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: vars.$box-sh;
+
+  &__logo {
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: vars.$primary-c;
+    }
+
+    &-icon {
+      font-size: 40px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+    }
+
+    &-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+}
