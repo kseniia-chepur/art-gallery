@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Artwork } from '../interfaces/artwork';
 import { Observable } from 'rxjs';
+import { QueryParams } from '../interfaces/query-params';
 
 @Injectable({
   providedIn: 'root',
@@ -12,12 +13,12 @@ export class ArtworkService {
 
   private http = inject(HttpClient);
 
-  getArtworks(queryParams?: any): Observable<Artwork[]> {
+  getArtworks(queryParams?: QueryParams): Observable<Artwork[]> {
     let params = new HttpParams();
 
     if (queryParams) {
       Object.keys(queryParams).forEach((key) => {
-        params = params.set(key, queryParams[key]);
+        params = params.set(key, String(queryParams[key as keyof QueryParams]));
       });
     }
 
