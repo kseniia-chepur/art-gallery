@@ -28,4 +28,8 @@ export class ArtworkService {
   getArtworkById(id: string): Observable<Artwork> {
     return this.http.get<Artwork>(`${this.API_URL}/${id}`);
   }
+
+  deleteArtwork(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.API_URL}/${id}`);
+  }
 }

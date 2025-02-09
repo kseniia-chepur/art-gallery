@@ -105,7 +105,7 @@ button.form__btn {
     background-color: mat.get-theme-color(styles.$default-theme, primary, 20);
   }
 
-  &--clear {
+  &--clear:not(:disabled) {
     background-color: mat.get-theme-color(styles.$default-theme, primary, 70);
   }
 }
