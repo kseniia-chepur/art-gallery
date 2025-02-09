@@ -54,11 +54,11 @@
   }
 
   <ul class="artworks__content">
-    @for (artwork of artworks | slice: 0 : 4; track artwork._id) {
+    @for (artwork of artworks | slice: 20 : 30; track artwork._id) {
     <li class="artwork" [routerLink]="[artwork._id]">
       <div class="artwork__content">
         <img
-          [src]="artwork?.image || noImageUrl"
+          [src]="artwork.image || noImageUrl"
           [alt]="artwork.title"
           class="artwork__image"
         />

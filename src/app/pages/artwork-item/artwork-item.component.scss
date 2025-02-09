@@ -1,0 +1,85 @@
+@use "./../../../styles/variables.scss" as vars;
+@use "@angular/material" as mat;
+@use "./../../../styles/styles.scss" as styles;
+
+.artwork-item {
+  padding: 20px;
+
+  &__card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 30px;
+  }
+
+  &__image {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: vars.$border-r;
+    cursor: pointer;
+    transition: vars.$transition;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: vars.$box-sh-hover;
+    }
+  }
+
+  &__content {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title,
+  &__subtitle {
+    font-family: inherit;
+    font-weight: 700;
+    align-self: center;
+    margin-bottom: 5px;
+  }
+
+  &__type,
+  &__price,
+  &__status {
+    font-size: 0.9rem;
+
+    & span {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+  }
+
+  &__actions {
+    font-family: inherit;
+    align-self: center;
+    display: flex;
+    gap: 30px;
+  }
+
+  &__btn {
+    font-family: inherit;
+    min-width: vars.$btn-w;
+  }
+}
+
+mat-card-header {
+  margin-bottom: 20px;
+}
+
+mat-card-content {
+  margin-bottom: 50px;
+}
+
+button.artwork-item__btn {
+  &--update {
+    background-color: mat.get-theme-color(styles.$default-theme, primary, 30);
+  }
+
+  &--delete {
+    background-color: mat.get-theme-color(styles.$default-theme, tertiary, 10);
+  }
+}

@@ -3,6 +3,12 @@
 @use "./../../../styles/styles.scss" as styles;
 
 .artworks {
+  padding: 20px;
+
+  &__options {
+    margin-bottom: 50px;
+  }
+
   &__content {
     display: flex;
     align-items: stretch;
@@ -12,7 +18,7 @@
 }
 
 .artwork {
-  border-radius: 10px;
+  border-radius: vars.$border-r;
   box-shadow: vars.$box-sh;
   cursor: pointer;
   transition: vars.$transition;
@@ -54,7 +60,7 @@
     object-fit: cover;
     object-position: center;
     align-self: center;
-    border-radius: 10px;
+    border-radius: vars.$border-r;
     margin-bottom: 10px;
   }
 }
@@ -81,7 +87,7 @@
   &__btn {
     font-family: inherit;
     font-size: 0.75rem;
-    min-width: 85px;
+    min-width: vars.$btn-w;
   }
 }
 

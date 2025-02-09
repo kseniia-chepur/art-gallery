@@ -1,3 +1,4 @@
+@use './variables.scss' as vars;
 @use '@angular/material' as mat;
 
 $default-theme: mat.define-theme(
@@ -31,6 +32,7 @@ body {
 body {
   margin: 0;
   font-family: "Noto Sans Mono", serif;
+  color: vars.$primary-c;
 }
 
 * {

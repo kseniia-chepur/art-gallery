@@ -24,4 +24,8 @@ export class ArtworkService {
 
     return this.http.get<Artwork[]>(this.API_URL, { params });
   }
+
+  getArtworkById(id: string): Observable<Artwork> {
+    return this.http.get<Artwork>(`${this.API_URL}/${id}`);
+  }
 }
