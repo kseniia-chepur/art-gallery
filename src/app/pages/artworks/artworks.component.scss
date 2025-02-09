@@ -1,0 +1,105 @@
+@use "./../../../styles/variables.scss" as vars;
+@use "@angular/material" as mat;
+@use "./../../../styles/styles.scss" as styles;
+
+.artworks {
+  &__content {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    list-style: none;
+  }
+}
+
+.artwork {
+  border-radius: 10px;
+  box-shadow: vars.$box-sh;
+  cursor: pointer;
+  transition: vars.$transition;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: vars.$box-sh-hover;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    overflow: auto;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__title {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  &__price {
+    font-weight: bold;
+  }
+
+  &__artist {
+    font-size: 0.875rem;
+  }
+
+  &__image {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    object-position: center;
+    align-self: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.form {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+
+  &__field {
+    width: 25%;
+  }
+
+  &__input,
+  &__select {
+    padding-inline: 10px;
+    font-size: 0.75rem;
+  }
+  &__select-option {
+    font-size: 0.75rem;
+    padding: 7px 10px;
+  }
+
+  &__btn {
+    font-family: inherit;
+    font-size: 0.75rem;
+    min-width: 85px;
+  }
+}
+
+.not-found-msg {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.mat-mdc-option {
+  min-height: 28px;
+}
+
+button.form__btn {
+  &--submit {
+    background-color: mat.get-theme-color(styles.$default-theme, primary, 20);
+  }
+
+  &--clear {
+    background-color: mat.get-theme-color(styles.$default-theme, primary, 70);
+  }
+}

@@ -1,7 +1,7 @@
 @use "./../../../styles/variables.scss" as vars;
 
 .header {
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 20px;
   box-shadow: vars.$box-sh;
 
@@ -20,8 +20,7 @@
     }
 
     &-title {
-      font-size: 1.25rem;
-      font-weight: 600;
+      font-size: 1.125rem;
     }
   }
 }

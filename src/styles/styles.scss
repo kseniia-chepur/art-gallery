@@ -1,7 +1,33 @@
+@use '@angular/material' as mat;
+
+$default-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$violet-palette,
+      tertiary: mat.$magenta-palette,
+    ),
+  )
+);
+
+$compact-theme: mat.define-theme(
+  (
+    density: (
+      scale: -5,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($default-theme);
+   @include mat.form-field-density($compact-theme);
+}
+
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: "Noto Sans Mono", serif;

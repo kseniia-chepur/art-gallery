@@ -1,1 +1,76 @@
-<p>artworks works!</p>
+<div class="artworks">
+  <div class="artworks__options">
+    <form [formGroup]="filterForm" class="form" (ngSubmit)="onSubmit()">
+      <mat-form-field floatLabel="always">
+        <mat-label>Search by Artist</mat-label>
+        <mat-select class="form__select" formControlName="artist">
+          @for (artist of artists | keyvalue; track artist) {
+          <mat-option [value]="artist.value" class="form__select-option"
+            >{{artist.value}}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>Search by type</mat-label>
+        <mat-select class="form__select" formControlName="type">
+          @for (type of artworkTypes | keyvalue; track type) {
+          <mat-option [value]="type.value" class="form__select-option"
+            >{{type.value}}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always">
+        <mat-label>Sort by</mat-label>
+        <mat-select class="form__select" formControlName="price">
+          @for (option of sortOptions | keyvalue; track option) {
+          <mat-option [value]="option.key" class="form__select-option"
+            >{{option.value}}
+          </mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button type="submit" class="form__btn form__btn--submit">
+        Apply
+      </button>
+      <button
+        mat-flat-button
+        type="button"
+        class="form__btn form__btn--clear"
+        [disabled]="!isFilterApplied"
+        (click)="clearFilters()"
+      >
+        Clear
+      </button>
+    </form>
+  </div>
+
+  @if (!artworks.length && !isLoading) {
+  <h2 class="not-found-msg">No Results Found</h2>
+  }
+
+  <ul class="artworks__content">
+    @for (artwork of artworks | slice: 0 : 4; track artwork._id) {
+    <li class="artwork" [routerLink]="[artwork._id]">
+      <div class="artwork__content">
+        <img
+          [src]="artwork?.image || noImageUrl"
+          [alt]="artwork.title"
+          class="artwork__image"
+        />
+        <div class="artwork__details">
+          <h3 class="artwork__title">{{artwork.title}}</h3>
+          <p class="artwork__price">
+            {{artwork.price | currency: 'USD' : 'symbol' : '1.0'}}
+          </p>
+        </div>
+        <p class="artwork__artist">By: {{artwork.artist}}</p>
+      </div>
+    </li>
+    }
+  </ul>
+</div>
