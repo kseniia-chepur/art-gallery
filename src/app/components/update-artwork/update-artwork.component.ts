@@ -17,6 +17,7 @@ import { ArtworkService } from '../../services/artwork.service';
 import { removeEmptyFields } from '../../utils/removeEmptyFields';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Artwork } from '../../interfaces/artwork';
+import { removeWhitespaces } from '../../utils/removeWhitespaces';
 
 @Component({
   selector: 'app-update-artwork',
@@ -52,7 +53,8 @@ export class UpdateArtworkComponent {
   });
 
     onSubmit() {
-    const formValues = this.updateForm.getRawValue();
+    const formValues = removeWhitespaces(this.updateForm.value);
+
     const filteredValues = removeEmptyFields(formValues);
 
     this.artworkService.updateArtwork(this.artwork._id, filteredValues).subscribe({

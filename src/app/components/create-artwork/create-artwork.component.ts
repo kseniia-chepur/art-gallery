@@ -16,6 +16,7 @@ import { ErrorMsg } from '../../enums/error-msg';
 import { ArtworkService } from '../../services/artwork.service';
 import { removeEmptyFields } from '../../utils/removeEmptyFields';
 import { MatDialogRef } from '@angular/material/dialog';
+import { removeWhitespaces } from '../../utils/removeWhitespaces';
 
 @Component({
   selector: 'app-create-artwork',
@@ -48,7 +49,8 @@ export class CreateArtworkComponent {
   });
 
   onSubmit() {
-    const formValues = this.artworkForm.getRawValue();
+    const formValues = removeWhitespaces(this.artworkForm.value);
+
     const filteredValues = removeEmptyFields(formValues);
 
     this.artworkService.createArtwork(filteredValues).subscribe({
