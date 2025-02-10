@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline', subscriptSizing: 'dynamic' },
+      useValue: { appearance: 'outline', subscriptSizing: 'dynamic', floatLabel: 'always' },
     }, provideAnimationsAsync(),
   ],
 };

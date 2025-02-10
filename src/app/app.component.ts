@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CreateArtworkComponent } from "./components/create-artwork/create-artwork.component";
 
 @Component({
   selector: 'app-root',

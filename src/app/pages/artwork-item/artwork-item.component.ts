@@ -5,12 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArtworkService } from '../../services/artwork.service';
 import { Artwork } from '../../interfaces/artwork';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { CommonModule } from '@angular/common';
 import { AvailabilityTypes } from '../../enums/availability-types';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-artwork-item',
-  imports: [MatCardModule, MatButtonModule, CommonModule],
+  imports: [MatCardModule, MatButtonModule, CurrencyPipe],
   templateUrl: './artwork-item.component.html',
   styleUrl: './artwork-item.component.scss',
 })

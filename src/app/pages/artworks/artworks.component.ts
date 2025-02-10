@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ArtworkService } from '../../services/artwork.service';
 import { Artwork } from '../../interfaces/artwork';
-import { CommonModule } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,15 +13,18 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { KeyValuePipe } from '@angular/common';
 import { SortOptions } from '../../enums/sort-options';
 import { ArtworkTypes } from '../../enums/artwork-types';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { QueryParams } from '../../interfaces/query-params';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateArtworkComponent } from '../../components/create-artwork/create-artwork.component';
 
 @Component({
   selector: 'app-artworks',
   imports: [
-    CommonModule,
     RouterLink,
     MatInputModule,
     MatFormFieldModule,
@@ -30,6 +33,9 @@ import { QueryParams } from '../../interfaces/query-params';
     MatButtonModule,
     ReactiveFormsModule,
     ReactiveFormsModule,
+    KeyValuePipe,
+    CurrencyPipe,
+    NgxPaginationModule,
   ],
   templateUrl: './artworks.component.html',
   styleUrl: './artworks.component.scss',
@@ -39,9 +45,11 @@ export class ArtworksComponent implements OnInit {
   artists: string[] = [];
   isLoading = false;
   readonly noImageUrl: string = 'assets/images/no-image.png';
-  artworkTypes = ArtworkTypes;
-  sortOptions = SortOptions;
+  readonly artworkTypes = ArtworkTypes;
+  readonly sortOptions = SortOptions;
   queryParams: QueryParams = {};
+  page = 1;
+  pageSize = 4;
 
   filterForm = new FormGroup({
     artist: new FormControl(''),
@@ -53,6 +61,7 @@ export class ArtworksComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -130,5 +139,18 @@ export class ArtworksComponent implements OnInit {
       !!this.filterForm.value.type ||
       !!this.filterForm.value.price
     );
+  }
+
+  onCreate(): void {
+    let dialogRef = this.dialog.open(CreateArtworkComponent, {
+      height: '550px',
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe((id) => {
+      if (id) {
+        this.router.navigate(['/', id]);
+      }
+    });
   }
 }

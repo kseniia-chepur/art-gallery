@@ -21,7 +21,7 @@ $compact-theme: mat.define-theme(
 
 :root {
   @include mat.all-component-themes($default-theme);
-   @include mat.form-field-density($compact-theme);
+  @include mat.form-field-density($compact-theme);
 }
 
 html,
@@ -39,4 +39,13 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+.pagination {
+  font-size: 0.75rem;
+
+  & .ng-star-inserted.current,
+  & .current {
+    background-color: vars.$hover-c !important;
+  }
 }

@@ -1,7 +1,7 @@
-<div class="artworks">
-  <div class="artworks__options">
+<section class="artworks">
+  <div class="artworks__filters">
     <form [formGroup]="filterForm" class="form" (ngSubmit)="onSubmit()">
-      <mat-form-field floatLabel="always">
+      <mat-form-field>
         <mat-label>Search by Artist</mat-label>
         <mat-select class="form__select" formControlName="artist">
           @for (artist of artists | keyvalue; track artist) {
@@ -12,7 +12,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field floatLabel="always">
+      <mat-form-field>
         <mat-label>Search by type</mat-label>
         <mat-select class="form__select" formControlName="type">
           @for (type of artworkTypes | keyvalue; track type) {
@@ -23,7 +23,7 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field floatLabel="always">
+      <mat-form-field>
         <mat-label>Sort by</mat-label>
         <mat-select class="form__select" formControlName="price">
           @for (option of sortOptions | keyvalue; track option) {
@@ -54,7 +54,8 @@
   }
 
   <ul class="artworks__content">
-    @for (artwork of artworks | slice: 0 : 30; track artwork._id) {
+    @for (artwork of artworks | paginate: { itemsPerPage: pageSize, currentPage:
+    page }; track artwork._id) {
     <li class="artwork" [routerLink]="[artwork._id]">
       <div class="artwork__content">
         <img
@@ -73,4 +74,20 @@
     </li>
     }
   </ul>
-</div>
+
+  @if (artworks.length && !isLoading) {
+  <div class="artworks__pagination">
+    <pagination-controls
+      (pageChange)="page = $event"
+      class="pagination"
+    ></pagination-controls>
+    </div>
+    }
+
+    <div class="artworks__create-new">
+      <button mat-flat-button type="button" class="artworks__create-new-btn" (click)="onCreate()">
+        Add New Artwork
+      </button>
+    </div>
+  </section>
+

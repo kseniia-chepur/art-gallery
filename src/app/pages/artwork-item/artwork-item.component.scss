@@ -4,6 +4,8 @@
 
 .artwork-item {
   padding: 20px;
+  width: fit-content;
+  margin: auto;
 
   &__card {
     display: flex;

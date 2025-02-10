@@ -1,0 +1,62 @@
+@use "./../../../styles/variables.scss" as vars;
+@use "@angular/material" as mat;
+@use "./../../../styles/styles.scss" as styles;
+
+.new-artwork {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 50px;
+
+  &__title {
+    font-family: inherit;
+    font-weight: 600;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+}
+
+.artwork-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  &__field {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.875rem;
+  }
+
+  &__select,
+  &__select-option {
+    font-family: inherit;
+    font-size: 0.875rem;
+    letter-spacing: -0.1px;
+  }
+
+  &__error {
+    font-size: 0.7rem;
+    letter-spacing: -0.1px;
+  }
+
+  &__actions {
+    align-self: center;
+    display: flex;
+    gap: 30px;
+  }
+
+  &__btn {
+    font-family: inherit;
+    min-width: vars.$btn-w;
+
+    &--create:not(:disabled) {
+      background-color: mat.get-theme-color(styles.$default-theme, primary, 30);
+    }
+
+    &--cancel {
+      background-color: mat.get-theme-color(styles.$default-theme, primary, 70);
+    }
+  }
+}

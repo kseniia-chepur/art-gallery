@@ -7,6 +7,7 @@
       [alt]="artwork.title"
       class="artwork-item__image"
     />
+    
     <div class="artwork-item__content">
       <mat-card-header>
         <mat-card-title class="artwork-item__title"
@@ -16,27 +17,37 @@
           >By: {{artwork.artist}}</mat-card-subtitle
         >
       </mat-card-header>
+
       <mat-card-content>
         <p class="artwork-item__type">
           Type: <span>{{artwork.type || 'Unknown'}}</span>
         </p>
         <p class="artwork-item__price">
-          Price: <span>{{artwork.price | currency: 'USD': 'symbol' : '1.0' }}</span>
+          Price:
+          <span>{{artwork.price | currency: 'USD': 'symbol' : '1.0' }}</span>
         </p>
-        <p class="artwork-item__status">
-          Status: <span>{{status}}</span>
-        </p>
+        <p class="artwork-item__status">Status: <span>{{status}}</span></p>
       </mat-card-content>
+
       <mat-card-actions class="artwork-item__actions">
-        <button mat-flat-button class="artwork-item__btn artwork-item__btn--update">
+        <button
+          mat-flat-button
+          type="button"
+          class="artwork-item__btn artwork-item__btn--update"
+        >
           Update
         </button>
-        <button mat-flat-button class="artwork-item__btn artwork-item__btn--delete" (click)="onDelete()">
+        <button
+          mat-flat-button
+          type="button"
+          class="artwork-item__btn artwork-item__btn--delete"
+          (click)="onDelete()"
+        >
           Delete
         </button>
       </mat-card-actions>
+
     </div>
   </mat-card>
-
   }
 </section>

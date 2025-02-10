@@ -13,6 +13,10 @@ export class ArtworkService {
 
   private http = inject(HttpClient);
 
+  createArtwork(artworkData: Partial<Artwork>): Observable<Artwork> {
+    return this.http.post<Artwork>(this.API_URL, artworkData);
+  }
+
   getArtworks(queryParams?: QueryParams): Observable<Artwork[]> {
     let params = new HttpParams();
 
