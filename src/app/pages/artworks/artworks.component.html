@@ -78,16 +78,20 @@
   @if (artworks.length && !isLoading) {
   <div class="artworks__pagination">
     <pagination-controls
-      (pageChange)="page = $event"
+      (pageChange)="onPageChange($event)"
       class="pagination"
     ></pagination-controls>
-    </div>
-    }
+  </div>
+  }
 
-    <div class="artworks__create-new">
-      <button mat-flat-button type="button" class="artworks__create-new-btn" (click)="onCreate()">
-        Add New Artwork
-      </button>
-    </div>
-  </section>
-
+  <div class="artworks__create-new">
+    <button
+      mat-flat-button
+      type="button"
+      class="artworks__create-new-btn"
+      (click)="onCreate()"
+    >
+      Add New Artwork
+    </button>
+  </div>
+</section>

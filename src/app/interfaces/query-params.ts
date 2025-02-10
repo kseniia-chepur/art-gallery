@@ -4,4 +4,5 @@ export interface QueryParams {
   artist?: string;
   type?: string;
   price?: string;
+  page?: number;
 }

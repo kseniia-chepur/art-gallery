@@ -38,7 +38,8 @@
       <mat-error class="update-form__error">
         {{errorMsg.PRICE_REQUIRED}}
       </mat-error>
-      } @if (updateForm.controls.price.errors?.['min']) {
+      }
+      @if (updateForm.controls.price.errors?.['min']) {
       <mat-error class="update-form__error">
         {{errorMsg.PRICE_INVALID}}
       </mat-error>

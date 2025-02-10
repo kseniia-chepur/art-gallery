@@ -9,6 +9,7 @@ import { AvailabilityTypes } from '../../enums/availability-types';
 import { CurrencyPipe } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateArtworkComponent } from '../../components/update-artwork/update-artwork.component';
+import { dialog, noImageUrl } from '../../constants/app-constants';
 
 @Component({
   selector: 'app-artwork-item',
@@ -19,7 +20,7 @@ import { UpdateArtworkComponent } from '../../components/update-artwork/update-a
 export class ArtworkItemComponent implements OnInit {
   id: string = '';
   artwork: Artwork | null = null;
-  readonly noImageUrl: string = 'assets/images/no-image.png';
+  readonly noImageUrl: string = noImageUrl.DEFAULT_VALUE;
   status: string = '';
 
   private artworkService = inject(ArtworkService);
@@ -62,8 +63,8 @@ export class ArtworkItemComponent implements OnInit {
 
   onUpdate() {
     const dialogRef = this.dialog.open(UpdateArtworkComponent, {
-      height: '550px',
-      width: '500px',
+      height: dialog.HEIGHT,
+      width: dialog.WIDTH,
       data: this.artwork,
     });
 

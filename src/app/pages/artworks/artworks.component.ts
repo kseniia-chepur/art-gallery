@@ -21,6 +21,7 @@ import { QueryParams } from '../../interfaces/query-params';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateArtworkComponent } from '../../components/create-artwork/create-artwork.component';
+import { dialog, noImageUrl, pageSettings } from '../../constants/app-constants';
 
 @Component({
   selector: 'app-artworks',
@@ -43,13 +44,13 @@ import { CreateArtworkComponent } from '../../components/create-artwork/create-a
 export class ArtworksComponent implements OnInit {
   artworks: Artwork[] = [];
   artists: string[] = [];
-  isLoading = false;
-  readonly noImageUrl: string = 'assets/images/no-image.png';
+  isLoading: boolean = false;
+  readonly noImageUrl: string = noImageUrl.DEFAULT_VALUE;
   readonly artworkTypes = ArtworkTypes;
   readonly sortOptions = SortOptions;
-  queryParams: QueryParams = {};
-  page = 1;
-  pageSize = 4;
+  private queryParams: QueryParams = {};
+  readonly pageSize: number = pageSettings.PAGE_SIZE;
+  page: number = 1;
 
   private artworkService = inject(ArtworkService);
   private destroyRef = inject(DestroyRef);
@@ -66,6 +67,8 @@ export class ArtworksComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.queryParams = { ...params };
+
+      this.page = this.queryParams.page ? +this.queryParams.page : 1;
 
       this.filterForm.setValue({
         artist: this.queryParams.artist || '',
@@ -141,10 +144,21 @@ export class ArtworksComponent implements OnInit {
     );
   }
 
+   onPageChange(page: number): void {
+    this.page = page;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ...this.queryParams, page: this.page },
+      queryParamsHandling: 'merge',
+    });
+
+    this.fetchArtworks(this.queryParams);
+  }
+
   onCreate(): void {
     const dialogRef = this.dialog.open(CreateArtworkComponent, {
-      height: '550px',
-      width: '500px',
+      height: dialog.HEIGHT,
+      width: dialog.WIDTH,
     });
 
     dialogRef.afterClosed().subscribe((id) => {

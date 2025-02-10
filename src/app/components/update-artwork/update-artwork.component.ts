@@ -47,8 +47,8 @@ export class UpdateArtworkComponent {
   artist: new FormControl(this.artwork.artist, [Validators.required]),
   type: new FormControl<ArtworkTypes | null>(this.artwork.type, [Validators.required]),
   price: new FormControl(this.artwork.price, [Validators.required, Validators.min(1)]),
-  image: new FormControl(this.artwork.image, Validators.pattern(/^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i)),
-  availability: new FormControl<boolean | null>(this.artwork.availability),
+  image: new FormControl(this.artwork?.image, Validators.pattern(/^(https?:\/\/.*\.(?:png|jpg|jpeg|webp))$/i)),
+  availability: new FormControl<boolean | null>(this.artwork?.availability),
   });
 
     onSubmit() {
