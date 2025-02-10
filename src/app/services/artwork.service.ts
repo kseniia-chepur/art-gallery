@@ -3,18 +3,18 @@ import { inject, Injectable } from '@angular/core';
 import { Artwork } from '../interfaces/artwork';
 import { Observable } from 'rxjs';
 import { QueryParams } from '../interfaces/query-params';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArtworkService {
-  artworks: Artwork[] = [];
-  API_URL = 'http://localhost:8000/artworks';
+  private apiUrl = environment.API_URL;
 
   private http = inject(HttpClient);
 
   createArtwork(artworkData: Partial<Artwork>): Observable<Artwork> {
-    return this.http.post<Artwork>(this.API_URL, artworkData);
+    return this.http.post<Artwork>(this.apiUrl, artworkData);
   }
 
   getArtworks(queryParams?: QueryParams): Observable<Artwork[]> {
@@ -26,18 +26,18 @@ export class ArtworkService {
       });
     }
 
-    return this.http.get<Artwork[]>(this.API_URL, { params });
+    return this.http.get<Artwork[]>(this.apiUrl, { params });
   }
 
   getArtworkById(id: string): Observable<Artwork> {
-    return this.http.get<Artwork>(`${this.API_URL}/${id}`);
+    return this.http.get<Artwork>(`${this.apiUrl}/${id}`);
   }
 
   updateArtwork(id: string, artworkData: Partial<Artwork>): Observable<Artwork> {
-    return this.http.put<Artwork>(`${this.API_URL}/${id}`, artworkData);
+    return this.http.put<Artwork>(`${this.apiUrl}/${id}`, artworkData);
   }
 
   deleteArtwork(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.API_URL}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
