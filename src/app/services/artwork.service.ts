@@ -33,6 +33,10 @@ export class ArtworkService {
     return this.http.get<Artwork>(`${this.API_URL}/${id}`);
   }
 
+  updateArtwork(id: string, artworkData: Partial<Artwork>): Observable<Artwork> {
+    return this.http.put<Artwork>(`${this.API_URL}/${id}`, artworkData);
+  }
+
   deleteArtwork(id: string): Observable<void> {
     return this.http.delete<void>(`${this.API_URL}/${id}`);
   }

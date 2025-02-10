@@ -51,17 +51,17 @@ export class ArtworksComponent implements OnInit {
   page = 1;
   pageSize = 4;
 
-  filterForm = new FormGroup({
-    artist: new FormControl(''),
-    type: new FormControl(''),
-    price: new FormControl(''),
-  });
-
   private artworkService = inject(ArtworkService);
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   private dialog = inject(MatDialog);
+
+  filterForm = new FormGroup({
+    artist: new FormControl(''),
+    type: new FormControl(''),
+    price: new FormControl(''),
+  });
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -77,7 +77,7 @@ export class ArtworksComponent implements OnInit {
     });
   }
 
-  fetchArtworks(queryParams: QueryParams = {}): void {
+  private fetchArtworks(queryParams: QueryParams = {}): void {
     this.isLoading = true;
 
     this.artworkService
@@ -95,7 +95,7 @@ export class ArtworksComponent implements OnInit {
       .add(() => (this.isLoading = false));
   }
 
-  getArtists(): void {
+  private getArtists(): void {
     const artists = this.artworks.map((artwork) => artwork.artist);
     this.artists = [...new Set(artists)];
   }
@@ -142,7 +142,7 @@ export class ArtworksComponent implements OnInit {
   }
 
   onCreate(): void {
-    let dialogRef = this.dialog.open(CreateArtworkComponent, {
+    const dialogRef = this.dialog.open(CreateArtworkComponent, {
       height: '550px',
       width: '500px',
     });

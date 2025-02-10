@@ -7,7 +7,7 @@
       [alt]="artwork.title"
       class="artwork-item__image"
     />
-    
+
     <div class="artwork-item__content">
       <mat-card-header>
         <mat-card-title class="artwork-item__title"
@@ -34,6 +34,7 @@
           mat-flat-button
           type="button"
           class="artwork-item__btn artwork-item__btn--update"
+          (click)="onUpdate()"
         >
           Update
         </button>

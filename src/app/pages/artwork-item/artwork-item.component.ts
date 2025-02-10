@@ -7,6 +7,8 @@ import { Artwork } from '../../interfaces/artwork';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AvailabilityTypes } from '../../enums/availability-types';
 import { CurrencyPipe } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateArtworkComponent } from '../../components/update-artwork/update-artwork.component';
 
 @Component({
   selector: 'app-artwork-item',
@@ -15,42 +17,59 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './artwork-item.component.scss',
 })
 export class ArtworkItemComponent implements OnInit {
-  private artworkService = inject(ArtworkService);
-  private router = inject(Router);
-  private route = inject(ActivatedRoute);
-  private destroyRef = inject(DestroyRef);
-
   id: string = '';
   artwork: Artwork | null = null;
   readonly noImageUrl: string = 'assets/images/no-image.png';
   status: string = '';
+
+  private artworkService = inject(ArtworkService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
+  private dialog = inject(MatDialog);
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
         this.id = id;
-        this.artworkService
-          .getArtworkById(this.id)
-          .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe({
-            next: (data) => {
-              this.artwork = data;
-              this.getStatus();
-            },
-            error: (err) => console.error(err.message),
-          });
+        this.fetchArtwork();
       }
     });
   }
 
-  getStatus() {
+  private fetchArtwork(): void {
+    this.artworkService
+      .getArtworkById(this.id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (data) => {
+          this.artwork = data;
+          this.getStatus();
+        },
+        error: (err) => console.error(err.message),
+      });
+  }
+
+  private getStatus() {
     this.status =
       this.artwork?.availability === true
         ? AvailabilityTypes.AVAILABLE
         : this.artwork?.availability === false
         ? AvailabilityTypes.NOT_AVAILABLE
         : AvailabilityTypes.NO_INFORMATION;
+  }
+
+  onUpdate() {
+    const dialogRef = this.dialog.open(UpdateArtworkComponent, {
+      height: '550px',
+      width: '500px',
+      data: this.artwork,
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.fetchArtwork();
+    });
   }
 
   onDelete() {

@@ -1,0 +1,86 @@
+<section class="update-artwork">
+  <h1 class="update-artwork__title">Artwork</h1>
+  <form [formGroup]="updateForm" class="update-form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="update-form__field">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+      <mat-error class="update-form__error">
+        {{errorMsg.TITLE_REQUIRED}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="update-form__field">
+      <mat-label>Artist</mat-label>
+      <input matInput formControlName="artist" />
+      <mat-error class="update-form__error">
+        {{errorMsg.ARTIST_REQUIRED}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="update-form__field">
+      <mat-label>Select type</mat-label>
+      <mat-select formControlName="type" class="update-form__select">
+        @for (type of artworkTypes | keyvalue; track type) {
+        <mat-option [value]="type.value" class="update-form__select-option"
+          >{{type.value}}
+        </mat-option>
+        }
+      </mat-select>
+      <mat-error class="update-form__error">
+        {{errorMsg.TYPE_REQUIRED}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="update-form__field">
+      <mat-label>Price</mat-label>
+      <input matInput formControlName="price" type="number" />
+      @if (updateForm.controls.price.errors?.['required']) {
+      <mat-error class="update-form__error">
+        {{errorMsg.PRICE_REQUIRED}}
+      </mat-error>
+      } @if (updateForm.controls.price.errors?.['min']) {
+      <mat-error class="update-form__error">
+        {{errorMsg.PRICE_INVALID}}
+      </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field class="update-form__field">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="image" type="url" />
+      <mat-error class="update-form__error">
+        {{errorMsg.URL_INVALID}}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="update-form__field">
+      <mat-label>Select availability</mat-label>
+      <mat-select formControlName="availability" class="update-form__select">
+        @for (type of availabiltyOptions | keyvalue; track type) {
+        <mat-option [value]="type.value" class="update-form__select-option"
+          >{{type.key}}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <div class="update-form__actions">
+      <button
+        mat-flat-button
+        class="update-form__btn update-form__btn--cancel"
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+      <button
+        mat-flat-button
+        class="update-form__btn update-form__btn--update"
+        [disabled]="updateForm.invalid"
+        type="submit"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</section>
