@@ -34,18 +34,24 @@
         </mat-select>
       </mat-form-field>
 
-      <button mat-flat-button type="submit" class="form__btn form__btn--submit">
-        Apply
-      </button>
-      <button
-        mat-flat-button
-        type="button"
-        class="form__btn form__btn--clear"
-        [disabled]="!isFilterApplied"
-        (click)="clearFilters()"
-      >
-        Clear
-      </button>
+      <div class="form__actions">
+        <button
+          mat-flat-button
+          type="submit"
+          class="form__btn form__btn--submit"
+        >
+          Apply
+        </button>
+        <button
+          mat-flat-button
+          type="button"
+          class="form__btn form__btn--clear"
+          [disabled]="!isFilterApplied"
+          (click)="clearFilters()"
+        >
+          Clear
+        </button>
+      </div>
     </form>
   </div>
 

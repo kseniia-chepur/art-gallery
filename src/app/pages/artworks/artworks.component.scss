@@ -11,13 +11,14 @@
 
   &__content {
     display: flex;
+    flex-wrap: wrap;
     align-items: stretch;
     gap: 30px;
     list-style: none;
     margin-bottom: 15px;
   }
 
-   &__create-new-btn {
+  &__create-new-btn {
     font-family: inherit;
     min-width: 150px;
     background-color: mat.get-theme-color(styles.$default-theme, primary, 30);
@@ -94,6 +95,11 @@
     padding: 7px 10px;
   }
 
+  &__actions {
+    display: flex;
+    gap: 20px;
+  }
+
   &__btn {
     font-family: inherit;
     font-size: 0.75rem;
@@ -120,9 +126,25 @@ button.form__btn {
   }
 }
 
-@media(max-width: 1200px) {
-  .artwork {
-   flex-wrap: wrap;
-}
+@media (max-width: 1024px) {
+  .artworks {
+    &__content {
+      justify-content: center;
+    }
 
+    &__create-new {
+      display: flex;
+      justify-content: center;
+      margin-block: 10px;
+    }
+  }
+  .form {
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: 50px;
+
+    &__actions {
+      align-self: center;
+    }
+  }
 }

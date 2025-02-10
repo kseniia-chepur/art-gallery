@@ -31,7 +31,6 @@
   }
 
   &__content {
-    align-self: flex-start;
     display: flex;
     flex-direction: column;
   }
@@ -84,5 +83,22 @@ button.artwork-item__btn {
 
   &--delete {
     background-color: mat.get-theme-color(styles.$default-theme, tertiary, 10);
+  }
+}
+
+@media (max-width: 1024px) {
+  .artwork-item__card {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 567px) {
+  .artwork-item {
+    padding-inline: 10px;
+
+    &__image {
+      width: 270px;
+      height: 200px;
+    }
   }
 }
