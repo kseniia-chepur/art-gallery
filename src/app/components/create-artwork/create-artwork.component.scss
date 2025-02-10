@@ -36,12 +36,17 @@
     letter-spacing: -0.1px;
   }
 
+  &__select-option {
+    padding-inline: 15px;
+  }
+
   &__error {
     font-size: 0.7rem;
     letter-spacing: -0.1px;
   }
 
   &__actions {
+    margin-top: 10px;
     align-self: center;
     display: flex;
     gap: 30px;

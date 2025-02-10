@@ -8,5 +8,5 @@ export const noImageUrl = {
 
 export const dialog = {
   WIDTH: '500px',
-  HEIGHT: '550px',
+  HEIGHT: '520px',
 };
