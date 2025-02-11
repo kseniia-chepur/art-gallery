@@ -21,7 +21,11 @@ import { QueryParams } from '../../interfaces/query-params';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateArtworkComponent } from '../../components/create-artwork/create-artwork.component';
-import { dialog, noImageUrl, pageSettings } from '../../constants/app-constants';
+import {
+  dialog,
+  noImageUrl,
+  pageSettings,
+} from '../../constants/app-constants';
 
 @Component({
   selector: 'app-artworks',
@@ -118,6 +122,9 @@ export class ArtworksComponent implements OnInit {
       this.queryParams.price = formValues.price;
     }
 
+    this.page = 1;
+    this.queryParams.page = this.page;
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: this.queryParams,
@@ -144,7 +151,7 @@ export class ArtworksComponent implements OnInit {
     );
   }
 
-   onPageChange(page: number): void {
+  onPageChange(page: number): void {
     this.page = page;
     this.router.navigate([], {
       relativeTo: this.route,

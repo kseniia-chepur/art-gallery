@@ -81,14 +81,12 @@
     }
   </ul>
 
-  @if (artworks.length && !isLoading) {
   <div class="artworks__pagination">
     <pagination-controls
       (pageChange)="onPageChange($event)"
       class="pagination"
     ></pagination-controls>
   </div>
-  }
 
   <div class="artworks__create-new">
     <button
