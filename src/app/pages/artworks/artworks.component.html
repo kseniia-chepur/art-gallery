@@ -55,6 +55,12 @@
     </form>
   </div>
 
+  @if (isLoading) {
+    <div class="spinner">
+      <mat-spinner diameter="70"></mat-spinner>
+    </div>
+  }
+
   @if (!artworks.length && !isLoading) {
   <h2 class="not-found-msg">No Results Found</h2>
   }

@@ -13,6 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { KeyValuePipe } from '@angular/common';
 import { SortOptions } from '../../enums/sort-options';
 import { ArtworkTypes } from '../../enums/artwork-types';
@@ -36,6 +37,7 @@ import {
     FormsModule,
     MatSelectModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
     ReactiveFormsModule,
     KeyValuePipe,
@@ -49,6 +51,7 @@ export class ArtworksComponent implements OnInit {
   artworks: Artwork[] = [];
   artists: string[] = [];
   isLoading: boolean = false;
+  private isInitialLoad: boolean = true;
   readonly noImageUrl: string = noImageUrl.DEFAULT_VALUE;
   readonly artworkTypes = ArtworkTypes;
   readonly sortOptions = SortOptions;
@@ -85,7 +88,7 @@ export class ArtworksComponent implements OnInit {
   }
 
   private fetchArtworks(queryParams: QueryParams = {}): void {
-    this.isLoading = true;
+    this.isLoading = this.isInitialLoad;
 
     this.artworkService
       .getArtworks(queryParams)
@@ -99,7 +102,10 @@ export class ArtworksComponent implements OnInit {
         },
         error: (err) => console.error(err.message),
       })
-      .add(() => (this.isLoading = false));
+      .add(() => {
+        this.isLoading = false;
+        this.isInitialLoad = false;
+      });
   }
 
   private getArtists(): void {
